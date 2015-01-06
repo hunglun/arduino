@@ -6,6 +6,10 @@
     </style>
   </head>
   <body>
+    <button id="moveUp">move up</button>
+    <button id="moveDown">move down</button>
+    <button id="moveRight">move right</button>
+    <button id="moveLeft">move left</button>
 
     <button id="manualClose">Turn Off LED</button>
     <div id="box" style="min-height:200px;min-width:30px;background-repeat:no-repeat;background-image:url('http://gambit.mit.edu/updates/assets_c/2010/02/rook-thumb-175x258-2088.jpg')"></div>
@@ -17,7 +21,7 @@
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://cdn.socket.io/socket.io-1.2.1.js"></script>
   <script>
-  var socket = io(); //io('http://127.0.0.1');
+  var socket = io('http://127.0.0.1:3000'); //io('http://127.0.0.1');
   
 
   /* switch off led */
@@ -27,7 +31,22 @@
       socket.emit('manualClose','');
     })
     
+  $('#moveUp').click(function(){
+      socket.emit('moveUp','');
+  })
 
+  $('#moveDown').click(function(){
+      socket.emit('moveDown','');
+  })
+
+  $('#moveRight').click(function(){
+      socket.emit('moveRight','');
+  })
+
+  $('#moveLeft').click(function(){
+      socket.emit('moveLeft','');
+  })
+    
 
     /***********************
         joystick related

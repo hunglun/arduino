@@ -21,4 +21,7 @@ sudo port install socat in macbook.
 now I need to simulate the arduino board and joystick.
 And then implement the protocol that arduino.js can understand.
 
+[Wed Jan  7 02:07:34 SGT 2015]
+simulate joystick using 4 HTML buttons. 
+create a new object socket.js to send back a move command to arduino.html
 
