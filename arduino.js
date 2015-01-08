@@ -12,7 +12,8 @@ app.get('/',function(req,res){
 });
 
 // Firmata
-var serialPort = '/dev/tty.usbmodem1421';
+//var serialPort = '/dev/tty.usbmodem1421';
+var serialPort ='/dev/ttys001';
 var board = require('./firmataConnector').start(serialPort);
 
 // Arduino is connected
