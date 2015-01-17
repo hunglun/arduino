@@ -29,3 +29,8 @@ create a new object socket.js to send back a move command to arduino.html
 [Fri Jan  9 05:42:28 SGT 2015]
 create serial_server.js that moves the chess piece up, whenever this is serial data coming in.
 Next, Implement a serial data-on handler, based on firmata.js
+
+[Sat Jan 17 13:06:35 SGT 2015]
+create simulator/serial_client.sh that report version and send analog read command to arduino.js
+add console.log statement in firmata.js.
+But the problem is that arduino.js does not report successful serial connection, though firmata.js does receive the messages.
