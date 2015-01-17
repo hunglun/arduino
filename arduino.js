@@ -1,6 +1,11 @@
 
 "use strict";
 
+// ANSI escape codes (used to color the server logs)
+var magenta = '\u001b[35m';
+var green    = '\u001b[32m';
+var red      = '\u001b[31m';
+var reset    = '\u001b[0m';
 
 var app = require('express')();
 var http = require('http').Server(app);
@@ -15,20 +20,22 @@ app.get('/',function(req,res){
 //var serialPort = '/dev/tty.usbmodem1421';
 var serialPort ='/dev/ttys001';
 var board = require('./firmataConnector').start(serialPort);
-
 // Arduino is connected
-board.on('connection', function () {
-    console.log('connection on')
+io.on('connection', function (socket) {
+    console.log(green+"client connected: "+ socket.id + reset)
+
+    board.on('connection', function () {
+	console.log(green + 'board connection on' + reset)
     // Set pin 13 to output
-    board.pinMode(13, board.HIGH);
+//    board.pinMode(13, board.HIGH);
     
     // WebSocket connection handler
-    io.on('connection', function (socket) {
-        
         /***********************
             joystick related
         ***********************/
         board.analogRead(board.A0, function(val) {   
+	    console.log("Arduino.js : " )
+	    console.log(val )
             socket.emit('joystick-vertical',val)
         });
         board.analogRead(board.A1, function(val) {   
@@ -38,19 +45,19 @@ board.on('connection', function () {
 
         /* open led light at pin 13 */
         console.log('client connected: '+ socket.id);
-        board.digitalWrite(13, board.HIGH);
+  //      board.digitalWrite(13, board.HIGH);
         
         socket.on('disconnect', function () {
             /* open led light at pin 13 when someone disconnect */
 
             console.log('client disconnected: '+ socket.id);
-            board.digitalWrite(13, board.LOW);
+    //        board.digitalWrite(13, board.LOW);
         });
 
         socket.on('manualClose', function () {
             /* open led light at pin 13 when someone disconnect */
             console.log('client close led: '+ socket.id);
-            board.digitalWrite(13, board.LOW);
+      //      board.digitalWrite(13, board.LOW);
         });
 
 
