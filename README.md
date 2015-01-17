@@ -56,3 +56,5 @@ Read protocol.md for the message format.
 https://github.com/firmata/protocol
 
 I will close this project for now. Over the past few weeks, I have learnt about the firmata midi protocol, socket io, express and node.js. This is really fun.
+
+Thanks Tag Raynor for sharing the above source code. I just added the serial_client.sh and modify the arduino.js a bit to get everything working. 
